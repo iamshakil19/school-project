@@ -8,6 +8,32 @@ import { examResultFilterableFields } from './examResult.constant';
 import { IExamResult } from './examResult.interface';
 import { ExamResultService } from './examResult.service';
 
+const createResult = catchAsync(async (req: Request, res: Response) => {
+  const { ...examResultData } = req.body;
+
+  const result = await ExamResultService.createResult(examResultData);
+
+  sendResponse<IExamResult>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Result created successfully',
+    data: result,
+  });
+});
+
+const updateResult = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const result = await ExamResultService.updateResult(id, req.body);
+
+  sendResponse<IExamResult>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Semester updated successfully !',
+    data: result,
+  });
+});
+
 const getAllResults = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, examResultFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
@@ -54,4 +80,6 @@ export const ExamResultController = {
   deleteResult,
   getSingleResult,
   getAllResults,
+  createResult,
+  updateResult,
 };

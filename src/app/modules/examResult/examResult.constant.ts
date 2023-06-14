@@ -5,4 +5,4 @@ export const examResultFilterableFields = [
   'gpa',
 ];
 
-export const examResultSearchableFields = ['class', 'roll', 'gpa'];
+export const examResultSearchableFields = ['name', 'class', 'roll', 'gpa'];

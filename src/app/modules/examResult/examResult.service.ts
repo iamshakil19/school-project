@@ -6,6 +6,22 @@ import { examResultSearchableFields } from './examResult.constant';
 import { IExamResult, IExamResultFilters } from './examResult.interface';
 import { ExamResult } from './examResult.model';
 
+const createResult = async (payload: IExamResult): Promise<IExamResult> => {
+  const result = ExamResult.create(payload);
+  return result;
+};
+
+const updateResult = async (
+  id: string,
+  payload: IExamResult
+): Promise<IExamResult | null> => {
+  const result = await ExamResult.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+
+  return result;
+};
+
 const getAllResults = async (
   filters: IExamResultFilters,
   paginationOptions: IPaginationOptions
@@ -74,7 +90,9 @@ export const deleteResult = async (id: string): Promise<IExamResult | null> => {
 };
 
 export const ExamResultService = {
+  createResult,
   deleteResult,
   getSingleResult,
   getAllResults,
+  updateResult,
 };

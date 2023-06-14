@@ -5,6 +5,13 @@ import { IExamResult } from './examResult.interface';
 
 const examResultSchema = new Schema<IExamResult>(
   {
+    name: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+    },
     class: {
       type: String,
       required: true,
@@ -16,6 +23,12 @@ const examResultSchema = new Schema<IExamResult>(
     gpa: {
       type: String,
       required: true,
+    },
+    fatherName: {
+      type: String,
+    },
+    motherName: {
+      type: String,
     },
   },
   {
