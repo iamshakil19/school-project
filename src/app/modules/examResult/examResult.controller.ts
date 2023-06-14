@@ -23,9 +23,7 @@ const createResult = catchAsync(async (req: Request, res: Response) => {
 
 const updateResult = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-
   const result = await ExamResultService.updateResult(id, req.body);
-
   sendResponse<IExamResult>(res, {
     statusCode: httpStatus.OK,
     success: true,

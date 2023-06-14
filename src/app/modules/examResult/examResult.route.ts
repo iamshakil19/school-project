@@ -11,9 +11,9 @@ router.post(
   ExamResultController.createResult
 );
 
-router.patch('/:id', ExamResultController.updateResult);
-
 router.get('/:id', ExamResultController.getSingleResult);
+
+router.patch('/:id', ExamResultController.updateResult);
 
 router.delete('/:id', ExamResultController.deleteResult);
 
